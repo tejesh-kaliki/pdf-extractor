@@ -4,10 +4,6 @@ Tejesh Kaliki
 
 Summary:
 
-Software developer, known among peer group for creative problem solving and passion for coding,
-especially in Python. Strong believer and practitioner of continuous learning, teaching, and growth. Seeking
-a permanent work-from-home opportunity, as my mobility is limited due to Muscular Dystrophy.
-
 Technical Skills:
 
      Programming Languages - Python, Golang, JavaScript
