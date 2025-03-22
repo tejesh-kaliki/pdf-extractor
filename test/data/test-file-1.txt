@@ -1,0 +1,104 @@
+Tejesh Kaliki
+
+  tejesh.kaliki@gmail.com           +91 6309091410              tejesh-kaliki          tejesh-kaliki
+
+Summary:
+
+Software developer, known among peer group for creative problem solving and passion for coding,
+especially in Python. Strong believer and practitioner of continuous learning, teaching, and growth. Seeking
+a permanent work-from-home opportunity, as my mobility is limited due to Muscular Dystrophy.
+
+Technical Skills:
+
+     Programming Languages - Python, Golang, JavaScript
+     Libraries/Packages - Pandas, NumPy, SciPy, Scikit Learn, Spacy
+     Backend - Django, FastAPI, Go-gin
+     DevOps - Docker, Kubernetes, AWS
+     Database - PostgreSQL, Redis, Snowflake, Qdrant
+     Frontend - HTML, CSS, React, Flutter
+
+Work Experience:
+
+Software Engineer - Reckonsys Tech Labs | Dec 2023 - Present
+     Worked on AI-powered CRM software to manage customer leads from multiple communication
+     channels, including WhatsApp, Facebook, Instagram, and Email.
+     Improved the Python backend for better database communication, using optimizations such as query
+     tuning and caching, achieving a 10x speed increase while reducing database load.
+     Integrated AI features into the CRM, enabling automation of tasks like lead classification, labeling, and
+     generating auto-replies, reducing manual work and improving response times.
+     Implemented CI/CD pipelines for a Django-based stack, enabling smooth and reliable deployments
+     without downtime. This included automated testing and environment setup.
+     Enhanced developer productivity by automating application setup, dependency management, and
+     test data creation, reducing time spent on repetitive tasks.
+     Built a Flutter web application to browse and purchase used cars in the UK, integrating with a car
+     provider API for real-time data and ensuring a user-friendly interface.
+
+Software Engineer Intern - Reckonsys Tech Labs | Dec 2023 - Present
+     Developed a Retrieval-Augmented Generation (RAG) system for an AI-powered chat assistant in a
+     CRM.
+     Built REST APIs to configure the AI assistant and enable seamless conversations.
+     Managed the backend using Django, Dockerised the application, and handled multiple databases and
+     a language model.
+
+Education:
+Priyadarshini College of Engineering and Technology - B.Tech | Apr 2019 - May 2023
+
+     Graduated with a CGPA of 8.1, First Class with Distinction.
+     Built a cloud-based quiz app for a college event. I built this overnight using Flutter and hosted it on
+     Google Firebase. Users can register their team name. Admin manages users, turns the buzzer on or
+     off, and can see the list of people who clicked the buzzer in time order. The event was very successful
+     and the application received overwhelming praise.
+
+Projects:
+
+1. Application for Predicting Engineering College Admission for Class XII Students
+
+Tech Stack - Python (Sklearn, Pandas, Numpy, Django), Bootstrap, HTML, CSS, JS
+      Developed an Engineering college prediction system for Class XII students that helps them find
+      colleges they are likely to get admission into based on their entrance examination rank, area, caste,
+      and gender.
+      Administrators can view the data as well as train the Machine Learning model with additional data. My
+      role focused mainly on backend development using Django and Python and training the model.
+
+2. Data Science: Stock Price Prediction & Red Wine Analysis
+
+Tech Stack - Python (Numpy, Pandas, Matplotlib, Seaborn, Sklearn), Jupyter Notebook
+      Developed Machine Learning models for Stock Price Prediction and Red Wine Quality Estimation.
+      I started by cleaning the datasets, performing Exploratory Data Analysis, and selecting the best
+      features for training the model.
+      The Stock Price Prediction model predicts the future price of a stock based on past trend. The Red
+      Wine model uses features such as citric acid, density, residual sugars etc. to estimate quality of the
+      wine.
+      I used Python scikit-learn and achieved high efficiency in both models.
+
+3. Setup a Chatbot with an LLM to Answer Questions on Books
+
+Tech Stack - Python (H2OGPT, Discord Integration)
+      Used h2oGPT, an open-source alternative to ChatGPT, and trained an LLM (Large Language Model)
+      with a collection of books.
+      Deployed the model in cloud and linked it to a bot that answers user queries about those books,
+      summarises their content, and more functionalities. This project is done in collaboration with a team of
+      Discord group members.
+
+Awards/ Achievements:
+
+      Scored highest District rank in International Maths Olympiad in Class IX.
+      Received Govt. of A.P. Pratibha award in 10th and 12th classes for scoring top in Mandal.
+      Achieved 99.6 percentile in JEE Mains Mathematics, with no extra preparation or tutoring support.
+
+Hobbies / Interests:
+
+      Running a Youtube channel on Mathematics for JEE aspirants with 5000+ subscribers and 6L+ views.
+      Passionate about automation using Python and using AI, where applicable.
+      Love reading non-fiction, especially light reading from Japan and other countries.
+      Active member of a Discord group of tech enthusiasts and fans of series “Ascendance of a
+      Bookworm”.
+      Graphic design of posters, logos, animation, and more using Adobe products and freeware.
+
+Courses / Certification:
+
+      Top 5% score in LinkedIn skill assessment in Python programming language.
+      Internship certificate in Data Science from Corizo.
+      Certification courses from Kaggle on Intro to Machine Learning, Data Visualization and Feature
+      Engineering.
+      Completed courses in HTML, CSS, JS, and PHP on SoloLearn.
