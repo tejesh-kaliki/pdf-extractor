@@ -2,9 +2,50 @@
 DOCKER_IMAGE_NAME ?= pdf-processor
 PLATFORMS ?= $(shell uname -m | sed 's/x86_64/amd64/' | sed 's/aarch64/arm64/')
 
-.PHONY: all build slim-images login-ecr push-ecr create-manifest
+.PHONY: all build slim-images login-ecr push-ecr create-manifest validate-creds deploy install test help docker-compose-build docker-compose-up docker-compose-down run run-slim
 
-all: build slim-images login-ecr push-ecr create-manifest
+# Help target
+help:
+	@echo "Available targets:"
+	@echo "  help        - Show this help message"
+	@echo "  install     - Install dependencies using uv"
+	@echo "  test        - Run tests using pytest"
+	@echo "  run         - Run application"
+	@echo "  build       - Build Docker image for current architecture"
+	@echo "  slim-images - Apply docker-slim to reduce image size"
+	@echo "  run-slim    - Run the slimmed Docker image"
+	@echo "  deploy      - Full deployment workflow (build, slim, login, push, manifest)"
+	@echo ""
+	@echo "Docker Compose targets:"
+	@echo "  docker-compose-build - Build services defined in docker-compose.yml"
+	@echo "  docker-compose-up    - Start services defined in docker-compose.yml"
+	@echo "  docker-compose-down  - Stop services defined in docker-compose.yml"
+	@echo ""
+	@echo "AWS ECR deployment targets:"
+	@echo "  login-ecr        - Login to Amazon ECR"
+	@echo "  push-ecr         - Tag and push images to ECR"
+	@echo "  create-manifest  - Create and push manifest for multi-platform support"
+	@echo "  validate-creds   - Validate AWS credentials are properly set"
+	@echo ""
+	@echo "Environment variables:"
+	@echo "  DOCKER_IMAGE_NAME - Docker image name (default: pdf-processor)"
+	@echo "  AWS_ACCOUNT_ID    - AWS Account ID (required for ECR operations)"
+	@echo "  AWS_REGION        - AWS Region (required for ECR operations)"
+	@echo "  PLATFORMS         - Target platform(s) for build (default: current architecture)"
+
+install:
+	@echo "Installing dependencies..."
+	uv sync --frozen
+
+test:
+	@echo "Running tests..."
+	uv run pytest
+
+run:
+	@echo "Running application..."
+	uv run uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+
+deploy: build slim-images login-ecr push-ecr create-manifest
 
 # Build image based on the current architecture
 build:
@@ -21,6 +62,28 @@ slim-images:
 			--expose 8000 --http-probe-cmd GET:/docs \
 			--include-path /app; \
 	done
+
+# Run the slimmed Docker image
+run-slim:
+	@echo "Running slimmed docker image..."
+	@docker run \
+		--rm \
+		-p 8000:8000 \
+		--health-interval=30s \
+		--health-retries=2 \
+		--health-timeout=5s \
+		--health-start-period=10s \
+		--health-cmd="curl -f http://localhost:8000/health || exit 1" \
+		$(DOCKER_IMAGE_NAME):$(shell uname -m | sed 's/x86_64/amd64/' | sed 's/aarch64/arm64/')-slim
+
+docker-compose-build:
+	docker-compose -f docker/docker-compose.yml build
+
+docker-compose-up:
+	docker-compose -f docker/docker-compose.yml up -d
+
+docker-compose-down:
+	docker-compose -f docker/docker-compose.yml down
 
 AWS_ACCOUNT_ID ?= none
 AWS_REGION ?= none
