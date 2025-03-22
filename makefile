@@ -35,7 +35,7 @@ help:
 
 install:
 	@echo "Installing dependencies..."
-	uv sync --frozen
+	uv sync --frozen --group test
 
 test:
 	@echo "Running tests..."

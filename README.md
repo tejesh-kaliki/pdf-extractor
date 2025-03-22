@@ -101,11 +101,15 @@ Extracted text content from the PDF...
    ```bash
    make install
    ```
-3. Run tests:
+3. Setup pre-commit hooks:
+   ```bash
+   pre-commit install
+   ```
+4. Run tests:
    ```bash
    make test
    ```
-4. Run the application locally:
+5. Run the application locally:
    ```bash
    make run
    ```

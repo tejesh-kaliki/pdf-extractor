@@ -7,13 +7,15 @@ from src.extract_pdf import extract_text_from_pdf
 app = FastAPI(
     title="PDF Text Extraction API",
     description="API for extracting text content from PDF files",
-    version="1.0.0"
+    version="1.0.0",
 )
 
-@app.get("/health",
+
+@app.get(
+    "/health",
     summary="Health Check Endpoint",
     description="Returns the status of the service to verify it's running properly",
-    response_description="Returns a JSON object with 'status' field set to 'ok'"
+    response_description="Returns a JSON object with 'status' field set to 'ok'",
 )
 async def health_check():
     """
@@ -24,11 +26,13 @@ async def health_check():
     """
     return {"status": "ok"}
 
-@app.post("/extract-pdf",
+
+@app.post(
+    "/extract-pdf",
     response_class=PlainTextResponse,
     summary="Extract Text from PDF",
     description="Extracts all text content from an uploaded PDF file",
-    response_description="Returns the extracted text content as plain text"
+    response_description="Returns the extracted text content as plain text",
 )
 async def extract_pdf(file: UploadFile):
     """

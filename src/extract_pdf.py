@@ -5,6 +5,7 @@ import statistics
 
 MIN_FONT_SIZE = 3
 
+
 def find_line_index(values: list[int], value: int) -> int:
     """Find the right row coordinate.
 
@@ -19,6 +20,7 @@ def find_line_index(values: list[int], value: int) -> int:
         return values[i - 1]
     raise RuntimeError("Line for %g not found in %s" % (value, values))
 
+
 def curate_rows(rows: set[int], GRID: int) -> list[int]:
     rows_list = list(rows)
     rows_list.sort()  # sort ascending
@@ -27,6 +29,7 @@ def curate_rows(rows: set[int], GRID: int) -> list[int]:
         if h >= nrows[-1] + GRID:  # only keep significant differences
             nrows.append(h)
     return nrows  # curated list of line bottom coordinates
+
 
 def joinligature(lig: str) -> str:
     """Return ligature character for a given pair / triple of characters.
@@ -44,9 +47,10 @@ def joinligature(lig: str) -> str:
         "ffi": chr(0xFB03),
         "ffl": chr(0xFB04),
         "ft": chr(0xFB05),
-        "st": chr(0xFB06)
+        "st": chr(0xFB06),
     }
     return mapping.get(lig, lig)
+
 
 def make_textline(left: float, slot: float, minslot: float, lchars: list[tuple]):
     """Produce the text of one output line.
@@ -99,6 +103,7 @@ def make_textline(left: float, slot: float, minslot: float, lchars: list[tuple])
         text += char
         old_x1, old_ox = x1, ox  # new end coordinate
     return text.rstrip()
+
 
 def process_blocks(blocks: list[dict], page: pymupdf.Page):
     rows = set()
@@ -154,11 +159,12 @@ def process_blocks(blocks: list[dict], page: pymupdf.Page):
                     chars.append((ch, ox, oy, cwidth))  # all chars on page
     return chars, rows, left, right, rowheight
 
+
 def page_layout(page: pymupdf.Page, textout: io.BytesIO, flags: int):
     eop = bytes([12])
 
     # extract page text by single characters ("rawdict")
-    blocks = page.get_text("rawdict", flags=flags)["blocks"] # type: ignore
+    blocks = page.get_text("rawdict", flags=flags)["blocks"]  # type: ignore
     chars, rows, left, right, rowheight = process_blocks(blocks, page)
 
     if chars == []:
@@ -222,6 +228,7 @@ def page_layout(page: pymupdf.Page, textout: io.BytesIO, flags: int):
 
     textout.write(eop)  # write formfeed
 
+
 def extract_text_from_pdf(stream: io.BytesIO) -> bytes:
     response = None
     with pymupdf.open(stream=stream) as pdf, io.BytesIO() as output:
@@ -229,17 +236,19 @@ def extract_text_from_pdf(stream: io.BytesIO) -> bytes:
             page_layout(
                 page,
                 output,
-                flags=pymupdf.TEXT_PRESERVE_LIGATURES | pymupdf.TEXT_PRESERVE_WHITESPACE,
+                flags=pymupdf.TEXT_PRESERVE_LIGATURES
+                | pymupdf.TEXT_PRESERVE_WHITESPACE,
             )
         response = output.getvalue()
 
     return response
 
+
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser(description='Extract text from PDF file')
-    parser.add_argument('filename', help='Path to the PDF file')
+    parser = argparse.ArgumentParser(description="Extract text from PDF file")
+    parser.add_argument("filename", help="Path to the PDF file")
     args = parser.parse_args()
 
     with open(args.filename, "rb") as file:

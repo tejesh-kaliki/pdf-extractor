@@ -48,7 +48,7 @@ Priyadarshini College of Engineering and Technology - B.Tech | Apr 2019 - May 20
      Google Firebase. Users can register their team name. Admin manages users, turns the buzzer on or
      off, and can see the list of people who clicked the buzzer in time order. The event was very successful
      and the application received overwhelming praise.
-
+
 Projects:
 
 1. Application for Predicting Engineering College Admission for Class XII Students

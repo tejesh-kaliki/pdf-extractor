@@ -9,6 +9,7 @@ import difflib
 
 client = TestClient(app)
 
+
 def test_upload_file(test_dir: Path):
     """
     Test uploading a PDF file and comparing the extracted text with the expected content.
@@ -34,12 +35,10 @@ def test_upload_file(test_dir: Path):
     pdf_path = test_dir / "test-file-1.pdf"
     expected_content_path = test_dir / "test-file-1.txt"
 
-
     file = io.BytesIO(pdf_path.read_bytes())
 
     response: httpx.Response = client.post(
-        "/extract-pdf",
-        files={"file": ("test-file-1.pdf", file, "application/pdf")}
+        "/extract-pdf", files={"file": ("test-file-1.pdf", file, "application/pdf")}
     )
 
     assert response.status_code == 200
