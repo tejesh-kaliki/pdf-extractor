@@ -123,3 +123,10 @@ create-manifest: validate-creds
 		$(ECR_BASE_URI)/$(DOCKER_IMAGE_NAME):arm64-slim \
 		$(ECR_BASE_URI)/$(DOCKER_IMAGE_NAME):amd64-slim
 	docker manifest push $(ECR_BASE_URI)/$(DOCKER_IMAGE_NAME):latest
+
+build-and-deploy-lambda: validate-creds login-ecr
+	@echo "Building and deploying Lambda function..."
+	docker build -t $(DOCKER_IMAGE_NAME):lambda -f docker/lambda.Dockerfile .
+
+	docker tag $(DOCKER_IMAGE_NAME):lambda $(ECR_BASE_URI)/$(DOCKER_IMAGE_NAME):lambda
+	docker push $(ECR_BASE_URI)/$(DOCKER_IMAGE_NAME):lambda
