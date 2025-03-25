@@ -2,3 +2,4 @@ __pycache__/
 slim.report.json
 .venv
 .env
+.aws-sam/

@@ -54,4 +54,5 @@ async def extract_pdf(file: UploadFile):
     with io.BytesIO(contents) as file_stream:
         content = extract_text_from_pdf(file_stream)
 
+    print("Extracted content:", content.decode("utf-8"))
     return content.decode("utf-8")
