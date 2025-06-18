@@ -45,7 +45,7 @@ run:
 	@echo "Running application..."
 	uv run uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
 
-deploy: build slim-images login-ecr push-ecr create-manifest
+deploy: build login-ecr push-ecr create-manifest
 
 # Build image based on the current architecture
 build:
@@ -111,8 +111,8 @@ login-ecr: validate-creds
 # Tag and push images to ECR
 push-ecr: validate-creds
 	@echo "Tagging and pushing images to ECR..."
-	docker tag $(DOCKER_IMAGE_NAME):arm64-slim $(ECR_BASE_URI)/$(DOCKER_IMAGE_NAME):arm64-slim
-	docker tag $(DOCKER_IMAGE_NAME):amd64-slim $(ECR_BASE_URI)/$(DOCKER_IMAGE_NAME):amd64-slim
+	docker tag $(DOCKER_IMAGE_NAME):arm64 $(ECR_BASE_URI)/$(DOCKER_IMAGE_NAME):arm64-slim
+	docker tag $(DOCKER_IMAGE_NAME):amd64 $(ECR_BASE_URI)/$(DOCKER_IMAGE_NAME):amd64-slim
 	docker push $(ECR_BASE_URI)/$(DOCKER_IMAGE_NAME):arm64-slim
 	docker push $(ECR_BASE_URI)/$(DOCKER_IMAGE_NAME):amd64-slim
 
@@ -126,7 +126,7 @@ create-manifest: validate-creds
 
 build-and-deploy-lambda: validate-creds login-ecr
 	@echo "Building and deploying Lambda function..."
-	docker build -t $(DOCKER_IMAGE_NAME):lambda -f docker/lambda.Dockerfile .
+	DOCKER_BUILDKIT=0 docker build --platform=linux/arm64 -t $(DOCKER_IMAGE_NAME):lambda -f docker/lambda.Dockerfile .
 
 	docker tag $(DOCKER_IMAGE_NAME):lambda $(ECR_BASE_URI)/$(DOCKER_IMAGE_NAME):lambda
 	docker push $(ECR_BASE_URI)/$(DOCKER_IMAGE_NAME):lambda
